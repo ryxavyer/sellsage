@@ -25,9 +25,9 @@ You can setup the database for development using `npm run init-db-dev`. There ar
 
 As is, adding support for additional *unique* (see [Scaling SellSage -> Database](#database-1)) tickers is trivial. Simply add to the `SUPPORTED_TICKERS` constant and re-run the `seed.ts` database script. If your database is already set up, you might have to run `wipe.ts` first to avoid conflicts or better yet create a script that only wipes the `crypto` table.
 
-### Resyncing Slash Commands (Optional)
+### Syncing Slash Commands
 
-If you make changes in `src/commands/register.ts` which defines the slash commands you see on discord, you can use `npm run register-discord-commands` to push the updates.
+Discord slash commands are defined in the `src/commands/register.ts` script. You can use `npm run register-discord-commands` to push / sync the commands.
 
 ### Running SellSage
 

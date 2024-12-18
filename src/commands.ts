@@ -152,6 +152,8 @@ export async function viewTargets(interaction: CommandInteraction) {
                 `No targets found for ${ticker}. Use /addtarget to add a target.`,
             );
         }
+        // sort targets by price
+        targets.sort((a, b) => a.price - b.price);
         let targetsMessage = "Your sale targets for **" + ticker + "**:\n";
         targets.forEach((target) => {
             targetsMessage += `- Sell ${target.percentage}% at $${target.price}.\n`;
