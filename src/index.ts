@@ -6,7 +6,7 @@ import {
     viewTargets,
     sendHelp,
     unlink,
-} from "./commands";
+} from "./bot";
 import client from "./client";
 import { Command } from "./commands/types";
 import { getOrCreateUser } from "./database/utils";
