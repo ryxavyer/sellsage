@@ -8,7 +8,7 @@ Add **SellSage** to your Discord server using [this link](https://discord.com/oa
 
 ## Getting Started
 
-This project was built with Node.js, Typescript, and SQLite.
+This project is built with Node.js, Typescript, and SQLite.
 
 Pull the repo and install dependencies using `npm install`.
 
