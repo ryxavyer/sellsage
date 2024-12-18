@@ -41,7 +41,7 @@ This project was created quickly to accomplish the minimum functionality needed 
 
 ### Database
 
-I designed the `crypto` table with unique symbols for MVP simplicity. This won't do if you want this to scale to thousands of tickers on hundreds of networks as symbol uniqueness is not guaranteed. You will also inevitably need a better database solution to handle increased concurrency.
+I designed the `crypto` table with unique symbols for MVP simplicity. This won't do if you want this to scale to thousands of coins on hundreds of networks as symbol uniqueness is not guaranteed. You will also inevitably need a better database solution to handle increased concurrency.
 
 ### Market Update Frequency
 
