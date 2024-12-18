@@ -43,4 +43,4 @@ The cron job which watches price changes in the market is set up to run every 5 
 
 ### Resyncing Slash Commands
 
-If you make changes in `src/commands/register.ts` which defines the slash commands you see on discord, you can use the `npm run register-discord-commands` to push the updates.
+If you make changes in `src/commands/register.ts` which defines the slash commands you see on discord, you can use `npm run register-discord-commands` to push the updates.
