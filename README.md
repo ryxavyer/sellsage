@@ -2,7 +2,7 @@
 
 # SellSage
 
-**SellSage** is a Discord bot which helps cryptocurrency investors manage their exit strategies. Unlike simple price alert bots, SellSage manages sophisticated exit plans for the investor, including information such as cost basis and predefined sell targets, and alerts them when the defined sell targets are met. This makes life easier for investors because they don't have to constantly watch prices or pull up spreadsheets to figure out when / how much of their holdings to sell. Simply tell SellSage the goals of your exit plan and enjoy reduced risk and maximized profit.
+**SellSage** is a Discord bot which helps cryptocurrency investors manage their exit strategies. Unlike simple price alert bots, SellSage manages sophisticated exit plans for the investor, including information such as cost basis and predefined sell targets, and alerts them when the defined sell targets are met. This makes life easier for investors because they don't have to constantly watch prices or pull up spreadsheets to figure out when / how much of their holdings to sell. Simply tell SellSage the goals of your exit plan and enjoy being able to relax while you take profits.
 
 Add **SellSage** to your Discord server using [this link](https://discord.com/oauth2/authorize?client_id=1317638256564633634).
 
@@ -24,7 +24,7 @@ You should be able to set everything up for free - at the time of writing this C
 
 ### Database
 
-You can setup the database using `npm run init-db` or `npm run init-db-dev` depending on your environment.  There are also extra utility functions / npm scripts to help manage the database during development in `src/database`.
+You can setup the database using `npm run init-db` or `npm run init-db-dev` depending on your environment.  There are also extra utility functions / npm scripts to help manage the database in `src/database`.
 
 ## Notes for Your Development
 
