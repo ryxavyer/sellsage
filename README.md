@@ -14,7 +14,7 @@ Pull the repo and install dependencies using `npm install`.
 
 Setup a `.env` file in the base directory with
 
-- `DISCORD_APP_ID` - [Discord Developer Portal](https://discord.com/developers/applications) -> General Infomration -> Application ID
+- `DISCORD_APP_ID` - [Discord Developer Portal](https://discord.com/developers/applications) -> General Information -> Application ID
 - `DISCORD_BOT_TOKEN` - [Discord Developer Portal](https://discord.com/developers/applications) -> Application -> Bot -> Token
 - `COINGEKKO_API_KEY` - [CoinGekko Developer Portal](https://www.coingecko.com/en/developers/dashboard) -> My API Keys
 
