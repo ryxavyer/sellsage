@@ -1,10 +1,4 @@
-import {
-    Client,
-    GatewayIntentBits,
-    Partials,
-    ChannelType,
-    Interaction,
-} from "discord.js";
+import { ChannelType, Interaction } from "discord.js";
 import {
     setCostBasis,
     addTarget,
@@ -13,18 +7,10 @@ import {
     sendHelp,
     unlink,
 } from "./commands";
+import client from "./client";
 import { Command } from "./commands/types";
-import dotenv from "dotenv";
 import { getOrCreateUser } from "./database/utils";
 import { startPriceWatcher } from "./cron/watcher";
-
-const client = new Client({
-    intents: [
-        GatewayIntentBits.DirectMessages,
-        GatewayIntentBits.MessageContent,
-    ],
-    partials: [Partials.Channel],
-});
 
 client.once("ready", () => {
     console.log(`Logged in as ${client.user?.tag}!`);
@@ -80,6 +66,3 @@ client.on("interactionCreate", async (interaction: Interaction) => {
             break;
     }
 });
-
-dotenv.config();
-client.login(process.env.DISCORD_BOT_TOKEN);

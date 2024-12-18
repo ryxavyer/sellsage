@@ -7,7 +7,6 @@ db.prepare(
         discord_id TEXT UNIQUE NOT NULL,
         channel_id TEXT NOT NULL,
         username TEXT NOT NULL,
-        silence_alerts BOOLEAN DEFAULT FALSE,
         linked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
 `,
@@ -50,9 +49,9 @@ db.prepare(
         price NUMERIC(20, 10) NOT NULL,
         percentage NUMERIC(3, 2) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        was_notified BOOLEAN DEFAULT FALSE,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-        FOREIGN KEY (crypto_id) REFERENCES crypto(id) ON DELETE CASCADE
+        FOREIGN KEY (crypto_id) REFERENCES crypto(id) ON DELETE CASCADE,
+        UNIQUE (user_id, crypto_id, price)
     )
 `,
 ).run();

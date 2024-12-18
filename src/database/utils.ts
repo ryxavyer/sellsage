@@ -176,17 +176,20 @@ export function getTarget(
         .get(user_id, crypto_id, price);
     return target ? (target as TARGET) : undefined;
 }
-export function insertTarget(target: TARGET_CREATE): boolean {
+export function insertOrUpdateTarget(target: TARGET_CREATE): boolean {
     const result = db
         .prepare(
             `
-        INSERT INTO targets (user_id, crypto_id, price, percentage)
-        VALUES (?, ?, ?, ?)
-    `,
+            INSERT INTO targets (user_id, crypto_id, price, percentage)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(user_id, crypto_id, price)
+            DO UPDATE SET
+                percentage = excluded.percentage
+        `,
         )
         .run(target.user_id, target.crypto_id, target.price, target.percentage);
     if (!result.changes) {
-        throw new Error("❌ Error saving target.");
+        throw new Error("❌ Error saving or updating target.");
     }
     return true;
 }
@@ -203,7 +206,10 @@ export function deleteTarget(
         )
         .run(user_id, crypto_id, price);
     if (!result.changes) {
-        throw new Error("❌ Error deleting target.");
+        console.log(
+            `No matching target to delete for ${user_id} - ${crypto_id} at ${price}`,
+        );
+        return false;
     }
     return true;
 }

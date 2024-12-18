@@ -23,7 +23,7 @@ You should be able to set everything up for free - at the time of writing this C
 
 You can setup the database for development using `npm run init-db-dev`. There are also extra utility functions / npm scripts to help manage the database in `src/database`.
 
-As is, adding support for additional *unique* (see [Scaling SellSage -> Database](#database-1)) tickers is trivial. Simply add to the `SUPPORTED_TICKERS` constant and re-run the `seed.ts` database script. If your database is already set up, you might have to run `wipe.ts` first to avoid conflicts or better yet create a script that only wipes the `crypto` table.
+As is, adding support for additional _unique_ (see [Scaling SellSage -> Database](#database-1)) tickers is trivial. Simply add to the `SUPPORTED_TICKERS` constant and re-run the `seed.ts` database script. If your database is already set up, you might have to run `wipe.ts` first to avoid conflicts or better yet create a script that only wipes the `crypto` table.
 
 ### Syncing Slash Commands
 
@@ -37,7 +37,7 @@ Start a DM with your bot and use `/help` to see all commands and descriptions at
 
 ## Scaling SellSage
 
-This project was created quickly to accomplish the minimum functionality needed for myself and a handful of friends.  If you're interested in scaling this to thousands of users, below are a couple important things you will need to improve.
+This project was created quickly to accomplish the minimum functionality needed for myself and a handful of friends. If you're interested in scaling this to thousands of users, below are a couple important things you will need to improve.
 
 ### Database
 

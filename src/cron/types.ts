@@ -8,10 +8,11 @@ export interface CoinGekkoSimplePriceResponse {
 }
 
 export interface Alert {
+    targetId: number;
     userId: number;
     cryptoId: number;
-    username: string;
     channelId: string;
+    username: string;
     symbol: string;
     targetPrice: number;
     percentage: number;

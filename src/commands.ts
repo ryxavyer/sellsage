@@ -3,12 +3,13 @@ import { BASIS_CREATE, TARGET_CREATE } from "./database/types";
 import {
     deleteTarget,
     deleteUser,
+    getBasis,
     getCrypto,
     getTarget,
     getTargets,
     getUser,
     insertOrUpdateBasis,
-    insertTarget,
+    insertOrUpdateTarget,
 } from "./database/utils";
 import { SUPPORTED_TICKERS } from "./constants";
 
@@ -18,7 +19,6 @@ export async function unlink(interaction: CommandInteraction) {
         deleteUser(interaction.user.id);
         interaction.reply("✅ You've been unlinked from SellSage.");
     } catch (error) {
-        console.error("Error unlinking user:", error);
         interaction.reply("❌ Error unlinking user. Please try again.");
     }
 }
@@ -31,7 +31,7 @@ export async function sendHelp(interaction: CommandInteraction) {
 💵 *Optional*: Set your cost basis for a ticker and get extra information about your profits across alerts. If a cost basis is already set, this will overwrite it.
         
 \`/addtarget\`
-🎯 Add a sell target. SellSage will automatically alert you when the target is reached.
+🎯 Add a sell target and get an alert when the target is reached. If a target is already set at a given price, this will overwrite it.
         
 \`/removetarget\`
 ❌ Remove an existing sell target and any associated alerts.
@@ -74,9 +74,10 @@ export async function setCostBasis(interaction: CommandInteraction) {
         return interaction.reply(
             `✅ Set cost basis for ${ticker} - $${dollars} at $${price} per ${ticker}.`,
         );
-    } catch (error) {
-        console.error("Error saving cost basis:", error);
-        return interaction.reply(error || "❌ Error saving cost basis.");
+    } catch (error: Error | any) {
+        return interaction.reply(
+            error?.message || "❌ Error saving cost basis.",
+        );
     }
 }
 
@@ -103,13 +104,12 @@ export async function addTarget(interaction: CommandInteraction) {
             price: price,
             percentage: percentage,
         };
-        insertTarget(target);
+        insertOrUpdateTarget(target);
         return interaction.reply(
             `✅ Added target for ${ticker} - ${percentage}% at $${price}.`,
         );
-    } catch (error) {
-        console.error("Error saving target:", error);
-        return interaction.reply(error || "❌ Error saving target.");
+    } catch (error: Error | any) {
+        return interaction.reply(error?.message || "❌ Error saving target.");
     }
 }
 
@@ -130,15 +130,14 @@ export async function removeTarget(interaction: CommandInteraction) {
         }
         const target = getTarget(user.id, crypto.id, price);
         if (!target) {
-            throw new Error("❌ Target not found.");
+            throw new Error("❌ Target doesn't exist.");
         }
         deleteTarget(user.id, crypto.id, price);
         return interaction.reply(
             `✅ Removed target for ${ticker} at $${price}.`,
         );
-    } catch (error) {
-        console.error("Error deleting target:", error);
-        return interaction.reply(error || "❌ Error deleting target.");
+    } catch (error: Error | any) {
+        return interaction.reply(error?.message || "❌ Error deleting target.");
     }
 }
 
@@ -154,13 +153,34 @@ export async function viewTargets(interaction: CommandInteraction) {
         }
         // sort targets by price
         targets.sort((a, b) => a.price - b.price);
+        // get basis if exists
+        const user = getUser(interaction.user.id);
+        if (!user) {
+            throw new Error(
+                "❌ No user found. User needs to be linked before using SellSage.",
+            );
+        }
+        const crypto = getCrypto(ticker);
+        if (!crypto) {
+            throw new Error("❌ Cryptocurrency not supported.");
+        }
+        const basis = getBasis(user.id, crypto.id);
         let targetsMessage = "Your sale targets for **" + ticker + "**:\n";
         targets.forEach((target) => {
-            targetsMessage += `- Sell ${target.percentage}% at $${target.price}.\n`;
+            targetsMessage += `- Sell ${target.percentage}% at $${target.price}`;
+            if (basis) {
+                const profit =
+                    (target.price - basis.price) *
+                    (basis.dollars * (target.percentage / 100));
+                targetsMessage += ` ($${profit.toFixed(2)} projected profit based on cost basis)\n`;
+            } else {
+                targetsMessage += "\n";
+            }
         });
         return interaction.reply(targetsMessage);
-    } catch (error) {
-        console.error("Error fetching targets:", error);
-        return interaction.reply(error || "❌ Error fetching targets.");
+    } catch (error: Error | any) {
+        return interaction.reply(
+            error?.message || "❌ Error fetching targets.",
+        );
     }
 }
