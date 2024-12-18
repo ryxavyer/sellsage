@@ -1,0 +1,41 @@
+{
+  "name": "sellsage",
+  "version": "1.0.0",
+  "description": "A Discord bot which manages cryptocurrency exit plans to reduce risk and/or maximize profit.",
+  "main": "src/index.ts",
+  "scripts": {
+    "init-db": "node dist/database/schema.js && node dist/database/seed.js",
+    "init-db-dev": "ts-node src/database/schema.ts && ts-node src/database/seed.ts",
+    "wipe-db": "node dist/database/wipe.js",
+    "wipe-db-dev": "ts-node src/database/wipe.ts",
+    "purge-db": "node dist/database/purge.js",
+    "purge-db-dev": "ts-node src/database/purge.ts",
+    "build": "tsc",
+    "format": "prettier --write .",
+    "start": "node dist/index.js",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Fernandez (https://ryanfernandez.dev)",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "better-sqlite3": "^11.7.0",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.7",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.2",
+    "@types/node-cron": "^3.0.11",
+    "@types/ws": "^8.5.13",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^9.17.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
