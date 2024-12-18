@@ -105,7 +105,7 @@ export async function addTarget(interaction: CommandInteraction) {
         };
         insertTarget(target);
         return interaction.reply(
-            `✅ Added target for ${ticker} - ${percentage}% at ${price}.`,
+            `✅ Added target for ${ticker} - ${percentage}% at $${price}.`,
         );
     } catch (error) {
         console.error("Error saving target:", error);
@@ -134,7 +134,7 @@ export async function removeTarget(interaction: CommandInteraction) {
         }
         deleteTarget(user.id, crypto.id, price);
         return interaction.reply(
-            `✅ Removed target for ${ticker} at ${price}.`,
+            `✅ Removed target for ${ticker} at $${price}.`,
         );
     } catch (error) {
         console.error("Error deleting target:", error);
