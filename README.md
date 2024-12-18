@@ -8,7 +8,7 @@ Add **SellSage** to your Discord server using [this link](https://discord.com/oa
 
 ## Getting Started
 
-This project was built with Node.js, Typescript, and SQLite with nodemon for hot reload during development.
+This project was built with Node.js, Typescript, and SQLite.
 
 Pull the repo and install dependencies using `npm install`.
 
@@ -24,6 +24,10 @@ You should be able to set everything up for free - at the time of writing this C
 ### Database
 
 You can setup the database for development using `npm run init-db-dev`. There are also extra utility functions / npm scripts to help manage the database in `src/database`.
+
+### Running SellSage
+
+Once the steps above are complete, simply use `npm run dev` to start the development server.
 
 ## Notes for Your Development
 
