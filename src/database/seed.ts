@@ -7,7 +7,7 @@ const insert = db.prepare(`
     ON CONFLICT(symbol) DO NOTHING
 `);
 Object.entries(SUPPORTED_TICKERS).forEach(([symbol, data]) => {
-  insert.run(data.name, symbol, data.api_id);
+    insert.run(data.name, symbol, data.api_id);
 });
 
 console.log("Base cryptocurrency projects initialized.");

@@ -1,7 +1,7 @@
 import db from ".";
 
 db.prepare(
-  `
+    `
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY,
         discord_id TEXT UNIQUE NOT NULL,
@@ -14,7 +14,7 @@ db.prepare(
 ).run();
 
 db.prepare(
-  `
+    `
     CREATE TABLE IF NOT EXISTS crypto (
         id INTEGER PRIMARY KEY,
         name TEXT NOT NULL,
@@ -26,7 +26,7 @@ db.prepare(
 ).run();
 
 db.prepare(
-  `
+    `
     CREATE TABLE IF NOT EXISTS basis (
         id INTEGER PRIMARY KEY,
         user_id INTEGER NOT NULL,
@@ -36,12 +36,13 @@ db.prepare(
         added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
         FOREIGN KEY (crypto_id) REFERENCES crypto(id) ON DELETE CASCADE
+        UNIQUE (user_id, crypto_id)
     )
     `,
 ).run();
 
 db.prepare(
-  `
+    `
     CREATE TABLE IF NOT EXISTS targets (
         id INTEGER PRIMARY KEY,
         user_id INTEGER NOT NULL,
