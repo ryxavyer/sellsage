@@ -100,7 +100,7 @@ export async function sendAlerts(alerts: Alert[]): Promise<boolean> {
                 if (alert.basis) {
                     const profit =
                         (alert.currentPrice - alert.basis.price) *
-                        (alert.basis.dollars * (alert.percentage / 100));
+                        ((alert.basis.dollars / alert.basis.price) * (alert.percentage / 100));
                     message += `\n💰 Secure your profit of $${profit.toFixed(2)} compared to ${alert.percentage}% of your initial investment.`;
                 }
                 await channel.send(message);

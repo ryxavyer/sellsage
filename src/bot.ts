@@ -171,7 +171,7 @@ export async function viewTargets(interaction: CommandInteraction) {
             if (basis) {
                 const profit =
                     (target.price - basis.price) *
-                    (basis.dollars * (target.percentage / 100));
+                    ((basis.dollars / basis.price) * (target.percentage / 100));
                 targetsMessage += ` ($${profit.toFixed(2)} projected profit based on cost basis)\n`;
             } else {
                 targetsMessage += "\n";
