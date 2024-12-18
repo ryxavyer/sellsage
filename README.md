@@ -14,8 +14,9 @@ Pull the repo and install dependencies using `npm install`.
 
 Setup a `.env` file in the base directory with
 
-- `DISCORD_BOT_TOKEN` - found in the [Discord Developer Portal](https://discord.com/developers/applications) -> Application -> Bot
-- `COINGEKKO_API_KEY` - found in the [CoinGekko Developer Portal](https://www.coingecko.com/en/developers/dashboard) -> My API Keys
+- `DISCORD_APP_ID` - [Discord Developer Portal](https://discord.com/developers/applications) -> General Infomration -> Application ID
+- `DISCORD_BOT_TOKEN` - [Discord Developer Portal](https://discord.com/developers/applications) -> Application -> Bot -> Token
+- `COINGEKKO_API_KEY` - [CoinGekko Developer Portal](https://www.coingecko.com/en/developers/dashboard) -> My API Keys
 
 You should be able to set everything up for free - at the time of writing this CoinGekko has a demo tier for their API.
 
