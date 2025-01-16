@@ -13,7 +13,7 @@ const commands = [
             option
                 .setName("ticker")
                 .setDescription(
-                    "The cryptocurrency ticker (e.g., BTC, ETH, ADA)",
+                    "The cryptocurrency ticker (e.g. BTC, ETH, ADA)",
                 )
                 .setRequired(true)
                 .addChoices(
@@ -35,6 +35,24 @@ const commands = [
                 .setDescription("The average price per unit of your investment")
                 .setRequired(true),
         ),
+    
+    new SlashCommandBuilder()
+        .setName(Command.ViewBasis)
+        .setDescription("View your cost basis for a ticker")
+        .addStringOption((option) =>
+            option
+                .setName("ticker")
+                .setDescription(
+                    "The cryptocurrency ticker (e.g. BTC, ETH, ADA)",
+                )
+                .setRequired(true)
+                .addChoices(
+                    Object.keys(SUPPORTED_TICKERS).map((t) => ({
+                        name: t,
+                        value: t,
+                    })),
+                ),
+        ),
 
     new SlashCommandBuilder()
         .setName(Command.AddTarget)
@@ -43,7 +61,7 @@ const commands = [
             option
                 .setName("ticker")
                 .setDescription(
-                    "The cryptocurrency ticker (e.g., BTC, ETH, ADA)",
+                    "The cryptocurrency ticker (e.g. BTC, ETH, ADA)",
                 )
                 .setRequired(true)
                 .addChoices(
@@ -73,7 +91,7 @@ const commands = [
             option
                 .setName("ticker")
                 .setDescription(
-                    "The cryptocurrency ticker (e.g., BTC, ETH, ADA)",
+                    "The cryptocurrency ticker (e.g. BTC, ETH, ADA)",
                 )
                 .setRequired(true)
                 .addChoices(
@@ -97,7 +115,7 @@ const commands = [
             option
                 .setName("ticker")
                 .setDescription(
-                    "The cryptocurrency ticker (e.g., BTC, ETH, ADA)",
+                    "The cryptocurrency ticker (e.g. BTC, ETH, ADA)",
                 )
                 .setRequired(true)
                 .addChoices(

@@ -1,6 +1,7 @@
 import { ChannelType, Interaction } from "discord.js";
 import {
     setCostBasis,
+    viewCostBasis,
     addTarget,
     removeTarget,
     viewTargets,
@@ -46,6 +47,9 @@ client.on("interactionCreate", async (interaction: Interaction) => {
             break;
         case Command.SetBasis:
             await setCostBasis(interaction);
+            break;
+        case Command.ViewBasis:
+            await viewCostBasis(interaction);
             break;
         case Command.AddTarget:
             await addTarget(interaction);

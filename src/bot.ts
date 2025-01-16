@@ -81,6 +81,36 @@ export async function setCostBasis(interaction: CommandInteraction) {
     }
 }
 
+export async function viewCostBasis(interaction: CommandInteraction) {
+    // view the cost basis for a ticker
+    const ticker = interaction.options.get("ticker", true).value as string;
+    try {
+        const user = getUser(interaction.user.id);
+        if (!user) {
+            throw new Error(
+                "❌ No user found. User needs to be linked before using SellSage.",
+            );
+        }
+        const crypto = getCrypto(ticker);
+        if (!crypto) {
+            throw new Error("❌ Cryptocurrency not supported.");
+        }
+        const basis = getBasis(user.id, crypto.id);
+        if (!basis) {
+            return interaction.reply(
+                `No cost basis found for ${ticker}. Use /setbasis to set a cost basis.`,
+            );
+        }
+        return interaction.reply(
+            `Your cost basis for ${ticker} is $${basis.dollars} at $${basis.price} per ${ticker}.`,
+        );
+    } catch (error: Error | any) {
+        return interaction.reply(
+            error?.message || "❌ Error fetching cost basis.",
+        );
+    }
+}
+
 export async function addTarget(interaction: CommandInteraction) {
     // add a price target
     const ticker = interaction.options.get("ticker", true).value as string;
